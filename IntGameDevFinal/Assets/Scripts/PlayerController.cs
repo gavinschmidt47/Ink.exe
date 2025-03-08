@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDir;
 
 
+    //Player Stats
+    public float speed;
+
+
     //Player Components
     private Rigidbody rb;
 
@@ -36,6 +40,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         moveDir = movement.ReadValue<Vector2>();
-        rb.linearVelocity = new Vector3 (moveDir.x, 0, moveDir.y) * 100f * Time.deltaTime;
+        rb.linearVelocity = new Vector3 (moveDir.x, 0, moveDir.y) * speed * Time.deltaTime;
     }
 }
