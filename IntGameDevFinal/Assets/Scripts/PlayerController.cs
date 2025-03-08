@@ -6,12 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     //GameInfo
 
+
     //UI
+
 
     //Input
     public InputActionAsset inputs;
+    
     private InputAction movement;
     private Vector3 moveDir;
+
 
     //Player Components
     private Rigidbody rb;
