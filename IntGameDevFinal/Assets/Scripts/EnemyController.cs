@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     {
         //Gets the Navmesh Agent component
         agent = GetComponent<NavMeshAgent>();
+
+        //Sets the player to the player object
+        player = GameObject.FindWithTag("Player").transform;
     }
 
     void Update()
@@ -24,10 +27,10 @@ public class EnemyController : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
         //If the enemy collides with the player, destroy the player
-        if (collision.gameObject.CompareTag("Player"))
+        if (collider.gameObject.CompareTag("Player"))
         {
             // health.Damage(1);?
             Debug.Log("Player Hit");
