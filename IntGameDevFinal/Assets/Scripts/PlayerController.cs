@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public enum Weapon
 {
-    Pencil,
-    Pen,
-    PaintBrush
+    Paintbrush = 1,
+    Pencil = 5,
+    Pen = 20,
+    PaintBrush = 50
 }
 
 public class PlayerController : MonoBehaviour
@@ -78,8 +79,6 @@ public class PlayerController : MonoBehaviour
         //Set XP Bar
         xpBar.maxValue = xpToLevel;
         xpBar.value = xp;
-
-
     }
 
     // Update is called once per frame
