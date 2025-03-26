@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 329650707909443485}
   - component: {fileID: 363519307923560993}
   m_Layer: 0
-  m_Name: Right Attack
+  m_Name: Right Paintbrush Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 2706567071305112951}
   - component: {fileID: 1274112941568819822}
   m_Layer: 0
-  m_Name: Left Attack
+  m_Name: Left Paintbrush Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,6 +269,72 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &8499272706265728981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6521734585599790661}
+  - component: {fileID: 2362318811005863250}
+  - component: {fileID: 2033277285606752014}
+  m_Layer: 0
+  m_Name: Left Pencil Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6521734585599790661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499272706265728981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5442807032345223000}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2362318811005863250
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499272706265728981}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15.12914, y: 10.89057, z: 6.61613}
+  m_Center: {x: -4.017849, y: 0, z: 4.8974344e-15}
+--- !u!114 &2033277285606752014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499272706265728981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8635279853793194977
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +373,8 @@ Transform:
   - {fileID: 2367715943349475986}
   - {fileID: 7842484057868581927}
   - {fileID: 9069993041216505914}
+  - {fileID: 6521734585599790661}
+  - {fileID: 1037570940522217358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6706261711586638854
@@ -406,15 +474,15 @@ MonoBehaviour:
   levelUpPrompt: {fileID: 0}
   levelUpScreen: {fileID: 0}
   inputs: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  speed: 200
+  playerSave: {fileID: 11400000, guid: 50575d1b8b768f144bec774bd9a8cb39, type: 2}
   attackTime: 1.2
-  maxHealth: 10
-  health: 0
-  xp: 0
-  xpToLevel: 10
-  canLevelUp: 0
-  leftAtt: {fileID: 2675469332883324688}
-  rightAtt: {fileID: 2117859888874095143}
+  leftPaintBAtt: {fileID: 2675469332883324688}
+  rightPaintBAtt: {fileID: 2117859888874095143}
+  leftPencilAtt: {fileID: 8499272706265728981}
+  rightPencilAtt: {fileID: 8944229880547719434}
+  leftPenAtt: {fileID: 8499272706265728981}
+  rightPenAtt: {fileID: 8944229880547719434}
+  PaintBucketAtt: {fileID: 8499272706265728981}
 --- !u!65 &8027031373356716287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -570,3 +638,69 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1 &8944229880547719434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037570940522217358}
+  - component: {fileID: 1516453671354912342}
+  - component: {fileID: 6963040993439323953}
+  m_Layer: 0
+  m_Name: Right Pencil Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1037570940522217358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944229880547719434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5442807032345223000}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1516453671354912342
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944229880547719434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15.12914, y: 10.89057, z: 6.61613}
+  m_Center: {x: 4.017849, y: 0, z: 4.8974344e-15}
+--- !u!114 &6963040993439323953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944229880547719434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
