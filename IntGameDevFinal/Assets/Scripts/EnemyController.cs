@@ -14,17 +14,25 @@ public class EnemyController : MonoBehaviour
     public Sprite PC;
 
     //Enemy Components
+    [Header("Enemy Components")]
+    public GameObject healthBarObject;
+
+    private HealthBar healthBar;
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
 
 
     //Enemy Stats
+    private float maxHealth { get; set; }
     private float health { get; set; }
     private float damage { get; set; }
 
 
     void Start()
     {
+        //Gets the HealthBar component
+        healthBar = healthBarObject.GetComponent<HealthBar>();
+
         //Gets the Navmesh Agent component
         agent = GetComponent<NavMeshAgent>();
 
@@ -63,21 +71,21 @@ public class EnemyController : MonoBehaviour
         {
             //Clippy
             case 0:
-                health = 2;
+                maxHealth = 2; 
                 damage = 1;
                 //spriteRenderer.sprite = clippy;
                 break;
 
             //Cone
             case 1:
-                health = 10;
+                maxHealth = 10;
                 damage = 5;
                 //spriteRenderer.sprite = cone;
                 break;
 
             //PC
             case 2:
-                health = 50;
+                maxHealth = 50;
                 damage = 3;
                 //spriteRenderer.sprite = PC;
                 break;
@@ -87,6 +95,11 @@ public class EnemyController : MonoBehaviour
                 Debug.Log("Random value not in range");
                 break;
         }
+        //Sets health to maxHealth
+        health = maxHealth;
+
+        //Sets the health bar to the max health
+        healthBar.SetHealth(health, maxHealth);
     }
 
     public void Damage(float damage)
@@ -96,6 +109,10 @@ public class EnemyController : MonoBehaviour
 
         //Deal amount of damage to the enemy
         health -= damage;
+
+        //Update the health bar
+        healthBar.SetHealth(health, maxHealth);
+
         if (health <= 0)
         {
             //If the enemy's health is less than or equal to 0, destroy the enemy and give xp
