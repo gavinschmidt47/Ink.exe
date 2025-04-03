@@ -14,9 +14,24 @@ public class CharacterData
 }
 
 [System.Serializable]
-[XmlRoot("CharacterSaveData")]  // Root element in XML
-public class CharacterSaveData
+public class WeaponData
+{
+    [XmlAttribute("name")]
+    public string name;
+
+    public int damage;
+    public float fireRate;
+    public int ammoCapacity;
+    public bool isUnlocked;
+}
+
+[System.Serializable]
+[XmlRoot("GameSaveData")]
+public class GameSaveData
 {
     [XmlArray("Characters"), XmlArrayItem("Character")]
     public List<CharacterData> characters = new List<CharacterData>();
+
+    [XmlArray("Weapons"), XmlArrayItem("Weapon")]
+    public List<WeaponData> weapons = new List<WeaponData>();
 }
