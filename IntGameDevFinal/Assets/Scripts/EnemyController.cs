@@ -9,9 +9,9 @@ public class EnemyController : MonoBehaviour
 
     //Enemy Sprite
     [Header("Enemy Sprites")]
-    public Sprite clippy;
-    public Sprite cone;
-    public Sprite PC;
+    public GameObject power;
+    public GameObject cone;
+    public GameObject PC;
 
     //Enemy Components
     [Header("Enemy Components")]
@@ -73,7 +73,7 @@ public class EnemyController : MonoBehaviour
             case 0:
                 maxHealth = 2; 
                 damage = 1;
-                //spriteRenderer.sprite = clippy;
+                power.SetActive(true);
                 break;
 
             //Cone
