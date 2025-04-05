@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5def8a2179fe494abee7f7c71e2d17c, type: 3}
+  m_Name: CharacterUnlockData
+  m_EditorClassIdentifier: 
+  characters:
+  - name: Character1
+    unlocked: 1
+    levelUnlocked: 1
+    level: 0
+    health: 10
+    attack: 10
+  - name: Character2
+    unlocked: 0
+    levelUnlocked: 30
+    level: 0
+    health: 8
+    attack: 15
+  - name: Character3
+    unlocked: 0
+    levelUnlocked: 60
+    level: 0
+    health: 20
+    attack: 8

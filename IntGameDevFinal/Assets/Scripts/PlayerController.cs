@@ -241,4 +241,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
+
+    // Saves player data in XML save scripts
+    private void SavePlayerData()
+    {
+        XMLGameSaveManager.Instance.SavePlayerData(playerSave);
+    }
 }

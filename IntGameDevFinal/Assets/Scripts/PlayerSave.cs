@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "PlayerSave", menuName = "Scriptable Objects/PlayerSave")]
 public class PlayerSave : ScriptableObject
 {
