@@ -218,6 +218,7 @@ public class PlayerController : MonoBehaviour
             levelUpScreen.SetActive(true);
 
             playerSave.canLevelUp = false;
+            SavePlayerData();
         }
         else return;
     }
