@@ -214,8 +214,8 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             //UI
-            levelUpPrompt.SetActive(false);
-            levelUpScreen.SetActive(true);
+            //levelUpPrompt.SetActive(false);
+            //levelUpScreen.SetActive(true);
 
             playerSave.canLevelUp = false;
             SavePlayerData();

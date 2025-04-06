@@ -132,7 +132,7 @@ public class EnemyController : MonoBehaviour
         health = maxHealth;
 
         //Sets the health bar to the max health
-        healthBar.SetHealth(health, maxHealth);
+        //healthBar.SetHealth(health, maxHealth);
     }
 
     public void Damage(float damage)
