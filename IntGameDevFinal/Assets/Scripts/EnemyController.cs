@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
     private float maxHealth { get; set; }
     private float health { get; set; }
-    private float damage { get; set; }
+    internal float damage { get; set; }
     private bool isCone { get; set; }
     private bool firing;
 
@@ -112,7 +112,8 @@ public class EnemyController : MonoBehaviour
                 maxHealth = 10;
                 damage = 5;
                 isCone = true;
-                //spriteRenderer.sprite = cone;
+                cone.SetActive(true);
+                Debug.Log("Cone spawn");
                 break;
 
             //PC
