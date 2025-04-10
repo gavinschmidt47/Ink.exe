@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -59,7 +60,7 @@ public class GameController : MonoBehaviour
         do
         {
             //Gets a random position around the player
-            targetSpawn = new Vector3(player.transform.position.x + Random.Range(-10, 10), 0, player.transform.position.z + Random.Range(-10, 10));
+            targetSpawn = new Vector3(player.transform.position.x + UnityEngine.Random.Range(-10, 10), 0, player.transform.position.z + UnityEngine.Random.Range(-10, 10));
 
             enemyType = GetRandomValue();
 
@@ -113,7 +114,7 @@ public class GameController : MonoBehaviour
     
     private int GetRandomValue()
     {
-        float random = Random.Range(0, 100.1f);
+        float random = UnityEngine.Random.Range(0, 100.1f);
         if (random < 96.8f - (playerController.playerSave.level) * 0.99f)
         {
             return 0;

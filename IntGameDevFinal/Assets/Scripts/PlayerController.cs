@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -51,9 +52,14 @@ public class PlayerController : MonoBehaviour
     public GameObject PaintBucketAtt;
 
 
-
     //Player Components
     private Rigidbody rb;
+    
+
+    //Events
+    private delegate void AttackDelegate();
+    private AttackDelegate attackDelegate;
+    public event Action playerCanLevelUp;
 
 
     void OnEnable()
@@ -61,6 +67,9 @@ public class PlayerController : MonoBehaviour
         //Find and set each InputAction
         movement = inputs.FindAction("Move");
         movement.Enable();
+
+        //Set the level up listener
+        playerCanLevelUp += PromptLevelUp;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -82,6 +91,8 @@ public class PlayerController : MonoBehaviour
         //Set XP Bar
         xpBar.maxValue = playerSave.xpToLevel;
         xpBar.value = playerSave.xp;
+
+        attackDelegate = AttackPaintBrush;
     }
 
     // Update is called once per frame
@@ -102,7 +113,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             //Take damage
-            playerSave.health -= 1;
+            playerSave.health -= collision.gameObject.GetComponent<EnemyController>().damage;
             hpBar.value = playerSave.health;
 
             //If dead
@@ -123,22 +134,7 @@ public class PlayerController : MonoBehaviour
         //Only attack once per press
         if (!context.performed) return;
 
-        //Checks for which active weapon
-        switch ((int) playerSave.weapon)
-        {
-            case (int) Weapon.Paintbrush:
-                AttackPaintBrush();
-                break;
-            case (int) Weapon.Pencil:
-                AttackPencil();
-                break;
-            case (int) Weapon.Pen:
-                AttackPen();
-                break;
-            case (int) Weapon.PaintBucket:
-                AttackPaintBucket();
-                break;
-        }
+        attackDelegate();
     }
 
     private void AttackPaintBrush()
@@ -192,6 +188,27 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(AttackTimer(PaintBucketAtt));
     }
 
+    public void GainXP()
+    {
+        //Gain XP from enemy death
+        Debug.Log("Gaining XP");
+        ++playerSave.xp; 
+        xpBar.value = playerSave.xp;
+
+        if (playerSave.xp >= playerSave.xpToLevel)
+        {
+            playerCanLevelUp?.Invoke();
+        }
+    }
+
+    public void PromptLevelUp()
+    {
+        //Called from gain XP
+        playerSave.canLevelUp = true;
+        levelUpPrompt.SetActive(true);
+        StartCoroutine(LevelingUI());
+    }
+
     //Called from PlayerInput
     public void LevelUp(InputAction.CallbackContext context)
     {
@@ -217,7 +234,22 @@ public class PlayerController : MonoBehaviour
             levelUpPrompt.SetActive(false);
             levelUpScreen.SetActive(true);
 
+            //clear level up variables
             playerSave.canLevelUp = false;
+
+            //Set new weapon
+            if (playerSave.level == 2)
+            {
+                attackDelegate = AttackPencil;
+            }
+            else if (playerSave.level == 3)
+            {
+                attackDelegate = AttackPen;
+            }
+            else if (playerSave.level == 4)
+            {
+                attackDelegate = AttackPaintBucket;
+            }
         }
         else return;
     }

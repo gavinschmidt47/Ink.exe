@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Reflection;
 using UnityEditor.EditorTools;
@@ -24,7 +25,6 @@ public class EnemyController : MonoBehaviour
 
     private HealthBar healthBar;
     private NavMeshAgent agent;
-
 
     //Enemy Stats
     [Header("Enemy Stats")]
@@ -149,20 +149,10 @@ public class EnemyController : MonoBehaviour
 
         if (health <= 0)
         {
-            //If the enemy's health is less than or equal to 0, destroy the enemy and give xp
-            playerController.playerSave.xp += 1;
-            playerController.xpBar.value = playerController.playerSave.xp;
+            //Gives the player XP
+            playerController.GainXP();
 
-            //If enough xp to level up
-            if (playerController.playerSave.xp >= playerController.playerSave.xpToLevel) 
-            {
-                playerController.playerSave.canLevelUp = true;
-
-                playerController.levelUpPrompt.SetActive(true);
-                
-                playerController.StartCoroutine(playerController.LevelingUI());
-            }
-
+            //Destroy the enemy
             Destroy(gameObject);
         }
     }
