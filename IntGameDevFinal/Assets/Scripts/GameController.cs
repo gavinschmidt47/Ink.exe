@@ -68,7 +68,14 @@ public class GameController : MonoBehaviour
         } while (distanceToPlayer < spawnShield);
 
         currEnemy = Instantiate(enemyPrefab, targetSpawn, Quaternion.identity).GetComponent<EnemyController>();
-        currEnemy.setEnemy(enemyType);
+        try
+        {
+            currEnemy.setEnemy(enemyType);
+        }
+        catch (System.ArgumentException exception)
+        {
+            Debug.LogException(exception);
+        }
     }
 
     //Called by InputAction "Pause"

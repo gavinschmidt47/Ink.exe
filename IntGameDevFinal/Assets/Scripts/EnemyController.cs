@@ -125,8 +125,7 @@ public class EnemyController : MonoBehaviour
 
             //default (Bug)
             default:
-                Debug.Log("Random value not in range");
-                break;
+                throw new System.ArgumentException("Random value not in range");
         }
         //Sets health to maxHealth
         health = maxHealth;
