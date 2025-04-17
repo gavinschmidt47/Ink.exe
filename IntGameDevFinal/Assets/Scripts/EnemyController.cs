@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Reflection;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +19,7 @@ public class EnemyController : MonoBehaviour
     //Enemy Components
     [Header("Enemy Components")]
     public GameObject healthBarObject;
+    public ProjectilePool projectilePool;
 
     private HealthBar healthBar;
     private NavMeshAgent agent;
@@ -77,7 +76,6 @@ public class EnemyController : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
         }
-        
     }
 
     void OnTriggerEnter(Collider collider)
@@ -103,7 +101,7 @@ public class EnemyController : MonoBehaviour
             case 0:
                 maxHealth = 2; 
                 damage = 1;
-                isCone = false;
+                isCone = true;
                 power.SetActive(true);
                 break;
 
@@ -121,7 +119,7 @@ public class EnemyController : MonoBehaviour
                 maxHealth = 50;
                 damage = 3;
                 isCone = false;
-                //spriteRenderer.sprite = PC;
+                PC.SetActive(true);
                 break;
 
             //default (Bug)
@@ -183,7 +181,7 @@ public class EnemyController : MonoBehaviour
         }
         transform.rotation = targetRotation;
 
-        Instantiate(mousePointer, transform.position, Quaternion.identity);
+        projectilePool.GetProjectile(transform.position);
 
         //Wait for the attack time
         yield return new WaitForSeconds(attackTime);
