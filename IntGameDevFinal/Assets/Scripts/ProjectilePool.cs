@@ -13,23 +13,10 @@ public class ProjectilePool : MonoBehaviour
     [Tooltip("Offset of the projectile from the enemy")]
     public Vector3 offset = new Vector3(0, 0, 5f);
 
-    public static ProjectilePool Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
-
-
     private Queue<GameObject> projectilePool;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         for (int i = 0; i < maxProjectile; i++)
         {
@@ -54,15 +41,18 @@ public class ProjectilePool : MonoBehaviour
     //Gets the projectile from the pool and sets it to the player position
     public void GetProjectile(Vector3 targetPosition)
     {
+        //If the pool is empty, return
         if (projectilePool.Count > 0)
         {
             GameObject projectile = projectilePool.Dequeue();
             projectile.transform.position = targetPosition + offset;
             projectile.SetActive(true);
+            return;
         }
         else
         {
             Debug.LogWarning("No available projectiles in the pool.");
+            return;
         }
     }
 

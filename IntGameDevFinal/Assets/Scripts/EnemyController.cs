@@ -18,9 +18,9 @@ public class EnemyController : MonoBehaviour
 
     //Enemy Components
     [Header("Enemy Components")]
-    public GameObject healthBarObject;
-    public ProjectilePool projectilePool;
+    public GameObject healthObject;
 
+    private ProjectilePool projectilePool;
     private HealthBar healthBar;
     private NavMeshAgent agent;
 
@@ -42,17 +42,39 @@ public class EnemyController : MonoBehaviour
     private bool firing;
 
 
-    void Start()
+    void OnEnable()
     {
-        //Gets the HealthBar component
-        healthBar = healthBarObject.GetComponent<HealthBar>();
+        healthBar = healthObject.GetComponent<HealthBar>();
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar component not found on healthBarObject.");
+        }
 
         //Gets the Navmesh Agent component
         agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent component not found on this GameObject.");
+        }
 
         //Sets the player to the player object
         player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player object not found in the scene.");
+        }
         playerController = player.GetComponent<PlayerController>();
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController component not found on player object.");
+        }
+
+        //Sets the projectile pool to the projectile pool object
+        projectilePool = GameObject.Find("Projectile").GetComponent<ProjectilePool>();
+        if (projectilePool == null)
+        {
+            Debug.LogError("ProjectilePool not found in the scene.");
+        }
     }
 
     void Update()
@@ -171,7 +193,7 @@ public class EnemyController : MonoBehaviour
         firing = true;
 
         //Rotate the enemy to face the player
-        Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position) * Quaternion.Euler(90, 0, 0);
         float elapsedTime = 0f;
         while (elapsedTime < rotationTime)
         {
@@ -185,7 +207,7 @@ public class EnemyController : MonoBehaviour
 
         //Wait for the attack time
         yield return new WaitForSeconds(attackTime);
-        Quaternion targetRotation2 = Quaternion.Euler(0, 0, 0);
+        Quaternion targetRotation2 = Quaternion.LookRotation(player.transform.position - transform.position).normalized;
         elapsedTime = 0f;
         while (elapsedTime < rotationTime)
         {
@@ -197,5 +219,9 @@ public class EnemyController : MonoBehaviour
 
         //Set firing to false
         firing = false;
+
+        //Reset the path of the agent
+        agent.SetDestination(player.transform.position);
+        yield break;
     }
 }

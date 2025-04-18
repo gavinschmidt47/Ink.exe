@@ -101,19 +101,23 @@ public class PlayerController : MonoBehaviour
         //If hit by enemy
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Take damage
-            playerSave.health -= 1;
-            hpBar.value = playerSave.health;
+            TakeDamage(collision.gameObject.GetComponent<EnemyController>().damage);
+        }
+    }
+    public void TakeDamage(float damage)
+    {
+        //Take damage
+        playerSave.health -= damage;
+        hpBar.value = playerSave.health;
 
-            //If dead
-            if (playerSave.health <= 0)
-            {
-                //Destroy player
-                Destroy(gameObject);
+        //If dead
+        if (playerSave.health <= 0)
+        {
+            //Destroy player
+            Destroy(gameObject);
 
-                //Show Game Over
-                Debug.Log("Game Over");
-            }
+            //Show Game Over
+            Debug.Log("Game Over");
         }
     }
 

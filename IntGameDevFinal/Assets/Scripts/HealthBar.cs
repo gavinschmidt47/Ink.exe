@@ -7,13 +7,17 @@ public class HealthBar : MonoBehaviour
     public Vector3 offset;    // Offset position from the target
 
 
-    private Slider healthFill;  // The UI Image that represents the health fill
+    private Slider healthFill;  // The UI Slider that represents the health fill
     private Camera mainCamera;
 
-    void Start()
+    void Awake()
     {
         mainCamera = Camera.main;
         healthFill = GetComponent<Slider>();
+        if (healthFill == null)
+        {
+            Debug.LogError("Slider component not found on the GameObject.");
+        }
     }
 
     void Update()

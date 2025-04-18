@@ -114,17 +114,11 @@ public class GameController : MonoBehaviour
     private int GetRandomValue()
     {
         float random = Random.Range(0, 100.1f);
-        if (random < 96.8f - (playerController.playerSave.level) * 0.99f)
-        {
-            return 0;
-        }
-        else if (random < 3.2f + (playerController.playerSave.level))
-        {
+        if (random < 3.2f + (playerController.playerSave.level) * 0.99f)
             return 1;
-        }
+        else if (random < 96.8f - (playerController.playerSave.level))
+            return 0;
         else
-        {
             return 2;
-        }
     }
 }
