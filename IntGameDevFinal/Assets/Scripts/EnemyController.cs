@@ -123,7 +123,7 @@ public class EnemyController : MonoBehaviour
             case 0:
                 maxHealth = 2; 
                 damage = 1;
-                isCone = true;
+                isCone = false;
                 power.SetActive(true);
                 break;
 
