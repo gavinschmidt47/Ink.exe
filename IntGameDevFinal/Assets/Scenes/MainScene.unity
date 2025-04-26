@@ -459,7 +459,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1796,7 +1796,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUp: {fileID: 1225856042}
+  xpBar: {fileID: 796638669}
+  levelPrompt: {fileID: 301433647}
   pausePanel: {fileID: 423535493}
+  xpFull: 0
 --- !u!1 &990436996
 GameObject:
   m_ObjectHideFlags: 0
