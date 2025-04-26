@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
         //Set initial values
         Time.timeScale = 1;
         paused = false;
-        pausePanel.SetActive(false);
+        //pausePanel.SetActive(false);
 
         //Disable cursor
         Cursor.visible = false;
