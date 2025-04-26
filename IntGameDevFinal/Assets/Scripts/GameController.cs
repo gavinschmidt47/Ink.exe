@@ -78,36 +78,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //Called by InputAction "Pause"
-    public void Pause(InputAction.CallbackContext context)
-    {
-        //If correct state pressed
-        if (!context.started) return;
-
-        //Freeze time scale, show UI, and set paused state
-        if (paused)
-        {
-            //Set unpaused values
-            Time.timeScale = 1;
-            pausePanel.SetActive(false);
-            paused = false;
-
-            //Disable cursor
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            //Set paused values
-            Time.timeScale = 0;
-            pausePanel.SetActive(true);
-            paused = true;
-
-            //Enable cursor
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
+    //Pause function now located in LevelUp.cs
 
     //Called by resume button in pause menu
     public void Resume()
