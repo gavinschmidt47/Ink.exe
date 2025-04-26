@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        PlayerController.Instance.SavePlayerData();
         SceneManager.LoadScene(0);
     }
 }

@@ -14,6 +14,8 @@ public enum Weapon
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     //UI
     [Header("UI")]
     public Slider hpBar;
@@ -66,6 +68,16 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Singleton pattern for static reference for player
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
+
+        // load data from save
+        LoadSaveData();
+
         //Get Components
         rb = GetComponent<Rigidbody>();
 
@@ -73,11 +85,12 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePositionY;
 
         //Set Health and XP
-        playerSave.Reset((int) Weapon.Paintbrush);
+        //playerSave.Reset((int) Weapon.Paintbrush);
 
         //Set HP Bar
         hpBar.maxValue = playerSave.maxHealth;
         hpBar.value = playerSave.health;
+        Debug.Log("start: player health is " + hpBar.value);
 
         //Set XP Bar
         xpBar.maxValue = playerSave.xpToLevel;
@@ -243,8 +256,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Loads in values from save data and applies them to player
+    private void LoadSaveData()
+    {
+        Debug.Log("tried loading save");
+        if (XMLGameSaveManager.Instance)
+        {
+            GameSaveData saveData = XMLGameSaveManager.Instance.saveData;
+            playerSave = saveData.playerSave;
+            hpBar.maxValue = playerSave.maxHealth;
+            hpBar.value = playerSave.health;
+            Debug.Log("saved health: " + hpBar.value);
+            xpBar.maxValue = playerSave.xpToLevel;
+            xpBar.value = playerSave.xp;
+        }
+}
+
     // Saves player data in XML save scripts
-    private void SavePlayerData()
+    public void SavePlayerData()
     {
         XMLGameSaveManager.Instance.SavePlayerData(playerSave);
     }
