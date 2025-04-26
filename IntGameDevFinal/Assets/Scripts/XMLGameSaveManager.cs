@@ -147,7 +147,30 @@ public class XMLGameSaveManager : MonoBehaviour
         // write list of unlockable characters/weapons to save data
         if (weaponUnlockData != null && characterUnlockData != null)
         {
-            saveData.characters = characterUnlockData.characters;
+            //saveData.characters = characterUnlockData.characters;
+            saveData.characters = new List<CharacterData>();
+            foreach (var character in characterUnlockData.characters)
+            {
+                bool isUnlocked = character.levelUnlocked == 1;
+                saveData.characters.Add(new CharacterData
+                {
+                    name = character.name,
+                    unlocked = character.levelUnlocked == 1, // Automatically unlock level 1 characters
+                    levelUnlocked = character.levelUnlocked,
+                    level = character.levelUnlocked == 1 ? 1 : 0,
+                    health = character.health,
+                    attack = character.attack
+                });
+                if (isUnlocked)
+                {
+                    Debug.Log($"[Init] Unlocked character: {character.name} at level {character.levelUnlocked}");
+                }
+                else
+                {
+                    Debug.Log($"[Init] Locked character: {character.name}, unlocks at level {character.levelUnlocked}");
+                }
+
+            }
             saveData.weapons = weaponUnlockData.weapons;
         }
         // default/blank if no weapon/character data objects exists
@@ -156,10 +179,10 @@ public class XMLGameSaveManager : MonoBehaviour
             Debug.LogWarning("No weapon or character unlock data found.");
             saveData.characters = new List<CharacterData>
             {
-                new CharacterData { name = "Warrior", unlocked = true, level = 1, health = 100, attack = 10 },
-                new CharacterData { name = "Mage", unlocked = false, level = 0, health = 70, attack = 20 },
-                new CharacterData { name = "Rogue", unlocked = false, level = 0, health = 80, attack = 15 },
-                new CharacterData { name = "Archer", unlocked = false, level = 0, health = 90, attack = 12 }
+                new CharacterData { name = "Earl", unlocked = true, levelUnlocked = 1, level = 1, health = 50, attack = 10 },
+                new CharacterData { name = "Merlin", unlocked = false, levelUnlocked = 2, level = 0, health = 60, attack = 20 },
+                new CharacterData { name = "Rodger", unlocked = false, levelUnlocked = 3, level = 0, health = 100, attack = 40 },
+                //new CharacterData { name = "Archer", unlocked = false, level = 0, health = 90, attack = 12 }
             };
             saveData.weapons = new List<WeaponData>
             {
