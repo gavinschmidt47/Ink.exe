@@ -23,7 +23,7 @@ public class WeaponData
     public string name;
 
     public bool unlocked;
-    public int levelUnlocked;
+    public int levelUnlocked;// Determines when the character becomes available
     public int damage;
     public float fireRate;
     public int ammoCapacity;
