@@ -23,12 +23,18 @@ public class XMLGameSaveManager : MonoBehaviour
            Destroy(Instance);
         }
         Instance = this;
+        DontDestroyOnLoad(this);
 
         characterUnlockData = (CharacterUnlockData)Resources.Load("CharacterUnlockData");
         weaponUnlockData = (WeaponUnlockData)Resources.Load("WeaponUnlockData");
 
         path = Application.persistentDataPath + "/gamesave.xml";
         Debug.Log(path);
+        LoadGame();
+    }
+
+    private void OnEnable()
+    {
         LoadGame();
     }
     // writes current player data to save file
@@ -196,4 +202,4 @@ public class XMLGameSaveManager : MonoBehaviour
         SaveGame();
     }
 
-    }
+}

@@ -14,6 +14,8 @@ public enum Weapon
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     //UI
     [Header("UI")]
     public Slider hpBar;
@@ -43,7 +45,9 @@ public class PlayerController : MonoBehaviour
     //Player Children
     [Header("Player Children")]
     public GameObject leftPaintBAtt;
+    public GameObject topPaintBAtt;
     public GameObject rightPaintBAtt;
+    public GameObject bottomPaintBAtt;
     public GameObject leftPencilAtt;
     public GameObject rightPencilAtt;
     public GameObject leftPenAtt;
@@ -66,6 +70,16 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Singleton pattern for static reference for player
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
+
+        // load data from save
+        LoadSaveData();
+
         //Get Components
         rb = GetComponent<Rigidbody>();
 
@@ -73,15 +87,20 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePositionY;
 
         //Set Health and XP
-        playerSave.Reset((int) Weapon.Paintbrush);
+        //playerSave.Reset((int) Weapon.Paintbrush);
 
         //Set HP Bar
         hpBar.maxValue = playerSave.maxHealth;
         hpBar.value = playerSave.health;
+        Debug.Log("start: player health is " + hpBar.value);
 
         //Set XP Bar
         xpBar.maxValue = playerSave.xpToLevel;
         xpBar.value = playerSave.xp;
+
+        //StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
+        //StartCoroutine(WeaponAttackLoop(leftPenAtt, rightPenAtt));
+        StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
     }
 
     // Update is called once per frame
@@ -171,6 +190,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2)
+    {
+        weaponHitbox1.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox1));
+        yield return new WaitForSeconds(attackTime);
+        weaponHitbox2.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox2));
+        yield return new WaitForSeconds(attackTime);
+
+        StartCoroutine(WeaponAttackLoop(weaponHitbox1, weaponHitbox2));
+    }
+
+    private IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)
+    {
+        weaponHitbox1.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox1));
+        yield return new WaitForSeconds(attackTime / 2);
+        weaponHitbox2.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox2));
+        yield return new WaitForSeconds(attackTime / 2);
+        weaponHitbox3.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox3));
+        yield return new WaitForSeconds(attackTime / 2);
+        weaponHitbox4.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox4));
+        yield return new WaitForSeconds(attackTime / 2);
+
+        StartCoroutine(WeaponAttackLoop(weaponHitbox1, weaponHitbox2, weaponHitbox3, weaponHitbox4));
+    }
+
+
     private void AttackPen()
     {
         //Attack with pen
@@ -243,8 +293,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Loads in values from save data and applies them to player
+    private void LoadSaveData()
+    {
+        Debug.Log("tried loading save");
+        if (XMLGameSaveManager.Instance)
+        {
+            GameSaveData saveData = XMLGameSaveManager.Instance.saveData;
+            playerSave = saveData.playerSave;
+            hpBar.maxValue = playerSave.maxHealth;
+            hpBar.value = playerSave.health;
+            Debug.Log("saved health: " + hpBar.value);
+            xpBar.maxValue = playerSave.xpToLevel;
+            xpBar.value = playerSave.xp;
+        }
+}
+
     // Saves player data in XML save scripts
-    private void SavePlayerData()
+    public void SavePlayerData()
     {
         XMLGameSaveManager.Instance.SavePlayerData(playerSave);
     }
