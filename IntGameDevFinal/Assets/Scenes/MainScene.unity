@@ -1762,6 +1762,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1871276373}
+    - target: {fileID: 3011120716336532880, guid: 24b243fcf16b65b4b887294d49e3a11a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5961134512462833839, guid: 24b243fcf16b65b4b887294d49e3a11a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1808,7 +1812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6543000758066934647, guid: 24b243fcf16b65b4b887294d49e3a11a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3705,7 +3709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 207997733873464332, guid: cbee290d49137c54fbcc996ee9189861, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3037726068588213922, guid: cbee290d49137c54fbcc996ee9189861, type: 3}
       propertyPath: player
@@ -4320,7 +4324,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 810348970137493050, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: speed
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 810348970137493050, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: damage
@@ -4330,25 +4334,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1871276372}
-    - target: {fileID: 3462010006611571596, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1871276373}
-    - target: {fileID: 3462010006611571596, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3462010006611571596, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+    - target: {fileID: 810348970137493050, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: followDistance
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4706706397115265174, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1871276373}
-    - target: {fileID: 4706706397115265174, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6547045395694014810, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_Name

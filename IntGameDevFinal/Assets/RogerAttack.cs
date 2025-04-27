@@ -7,13 +7,16 @@ public class RogerAttack : MonoBehaviour
     public GameObject player;
     public float speed;
     public float damage;
+    public float followDistance;
     private Rigidbody rb;  // Companion's Rigidbody
     private GameObject target;
+    private Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb = GetComponent<Rigidbody>();  // Get Rigidbody component
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         target = null;
     }
 
@@ -23,12 +26,7 @@ public class RogerAttack : MonoBehaviour
         if (target == null || !target.activeSelf)
         {
             target = FindTarget();
-            // Update rogers animation
-            Animator animator = GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.SetFloat("Speed", 0f); // speed
-            }
+            FollowPlayer();
         }
         else
         {
@@ -42,13 +40,37 @@ public class RogerAttack : MonoBehaviour
             rb.MovePosition(transform.position + directionToEnemy.normalized * speed * Time.deltaTime);
 
             // Update rogers animation
-            Animator animator = GetComponent<Animator>();
-            if (animator != null) {
-                // Update the animator parameters based on player input
-                animator.SetFloat("MoveX", directionToEnemy.x); // Horizontal movement (X-axis)
-                animator.SetFloat("MoveZ", directionToEnemy.z); // Depth movement (Z-axis)
-                animator.SetFloat("Speed", directionToEnemy.magnitude); // speed
-            }
+            animator.SetFloat("MoveX", directionToEnemy.x); // Horizontal movement (X-axis)
+            animator.SetFloat("MoveZ", directionToEnemy.z); // Depth movement (Z-axis)
+            animator.SetFloat("Speed", directionToEnemy.magnitude); // speed
+        }
+    }
+
+    private void FollowPlayer()
+    {
+        // Calculate direction from companion to player
+        Vector3 directionToPlayer = player.transform.position - transform.position;
+
+        // No need to move if we're already within follow distance
+        if (directionToPlayer.magnitude > followDistance)
+        {
+            // Calculate desired position to maintain the follow distance
+            Vector3 desiredPosition = player.transform.position - directionToPlayer.normalized * followDistance;
+
+            // Smoothly move the companion to the desired position
+            Vector3 newPosition = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 5f);
+
+            Vector3 movement = newPosition - transform.position;
+            animator.SetFloat("MoveX", movement.x); // Horizontal movement (X-axis)
+            animator.SetFloat("MoveZ", movement.z); // Depth movement (Z-axis)
+            animator.SetFloat("Speed", movement.magnitude); // speed
+
+            // Apply the new position to the companion
+            rb.MovePosition(newPosition);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f); // speed
         }
     }
 
