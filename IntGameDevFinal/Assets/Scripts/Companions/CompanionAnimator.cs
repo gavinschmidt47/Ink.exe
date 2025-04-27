@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class CompanionAnimator : MonoBehaviour
 {
-    public Animator animator;
     public Transform player;//reference player for x axis and z axis movements.
+    private Animator animator;
     private Rigidbody rb;
 
     // Update is called once per frame
     void Update()
     {
-        rb = GetComponent<Rigidbody>();//get rigidbody
+        animator = GetComponent<Animator>();// animator
+        rb = GetComponent<Rigidbody>();// get rigidbody
 
         // Get the player's movement input
         float moveX = Input.GetAxis("Horizontal"); // A/D
