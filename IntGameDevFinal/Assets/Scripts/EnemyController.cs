@@ -198,4 +198,9 @@ public class EnemyController : MonoBehaviour
         //Set firing to false
         firing = false;
     }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
 }
