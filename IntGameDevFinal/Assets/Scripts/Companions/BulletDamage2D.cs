@@ -15,7 +15,9 @@ public class BulletDamage2D : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
+            Vector3 direction = (target.position - transform.position);
+            direction.y = 0f;
+            direction = direction.normalized;
             transform.position += direction * speed * Time.deltaTime;
         }
         else
@@ -24,16 +26,13 @@ public class BulletDamage2D : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        Debug.Log("Collision Enter");
+        EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
+        if (enemy != null)
         {
-            EnemyController enemy = other.GetComponent<EnemyController>();
-            if (enemy != null)
-            {
-                enemy.Damage(damage);
-            }
-
+            enemy.Damage(damage);
             Destroy(gameObject);
         }
     }
