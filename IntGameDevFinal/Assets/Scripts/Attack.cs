@@ -18,7 +18,7 @@ public class Attack : MonoBehaviour
 
             enemyController.Damage(playerController.playerSave.damage);
 
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
     }
 }

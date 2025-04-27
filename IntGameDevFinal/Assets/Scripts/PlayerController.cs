@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour
     //Player Children
     [Header("Player Children")]
     public GameObject leftPaintBAtt;
+    public GameObject topPaintBAtt;
     public GameObject rightPaintBAtt;
+    public GameObject bottomPaintBAtt;
     public GameObject leftPencilAtt;
     public GameObject rightPencilAtt;
     public GameObject leftPenAtt;
@@ -95,6 +97,10 @@ public class PlayerController : MonoBehaviour
         //Set XP Bar
         xpBar.maxValue = playerSave.xpToLevel;
         xpBar.value = playerSave.xp;
+
+        //StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
+        //StartCoroutine(WeaponAttackLoop(leftPenAtt, rightPenAtt));
+        StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
     }
 
     // Update is called once per frame
@@ -183,6 +189,37 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(AttackTimer(leftPencilAtt));
         }
     }
+
+    private IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2)
+    {
+        weaponHitbox1.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox1));
+        yield return new WaitForSeconds(attackTime);
+        weaponHitbox2.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox2));
+        yield return new WaitForSeconds(attackTime);
+
+        StartCoroutine(WeaponAttackLoop(weaponHitbox1, weaponHitbox2));
+    }
+
+    private IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)
+    {
+        weaponHitbox1.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox1));
+        yield return new WaitForSeconds(attackTime / 2);
+        weaponHitbox2.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox2));
+        yield return new WaitForSeconds(attackTime / 2);
+        weaponHitbox3.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox3));
+        yield return new WaitForSeconds(attackTime / 2);
+        weaponHitbox4.SetActive(true);
+        StartCoroutine(AttackTimer(weaponHitbox4));
+        yield return new WaitForSeconds(attackTime / 2);
+
+        StartCoroutine(WeaponAttackLoop(weaponHitbox1, weaponHitbox2, weaponHitbox3, weaponHitbox4));
+    }
+
 
     private void AttackPen()
     {
