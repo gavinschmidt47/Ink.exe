@@ -21,13 +21,17 @@ public class CompanionFollow : MonoBehaviour
         // Calculate direction from companion to player
         Vector3 directionToPlayer = player.position - transform.position;
 
-        // Calculate desired position to maintain the follow distance
-        Vector3 desiredPosition = player.position - directionToPlayer.normalized * followDistance;
+        // No need to move if we're already within follow distance
+        if (directionToPlayer.magnitude > followDistance)
+        {
+            // Calculate desired position to maintain the follow distance
+            Vector3 desiredPosition = player.position - directionToPlayer.normalized * followDistance;
 
-        // Smoothly move the companion to the desired position
-        Vector3 newPosition = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 5f);
+            // Smoothly move the companion to the desired position
+            Vector3 newPosition = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 5f);
 
-        // Apply the new position to the companion
-        rb.MovePosition(newPosition);
+            // Apply the new position to the companion
+            rb.MovePosition(newPosition);
+        }
     }
 }

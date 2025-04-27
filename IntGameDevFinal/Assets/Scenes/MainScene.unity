@@ -1806,6 +1806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gandaldore
       objectReference: {fileID: 0}
+    - target: {fileID: 6543000758066934647, guid: 24b243fcf16b65b4b887294d49e3a11a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3699,6 +3703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earl
       objectReference: {fileID: 0}
+    - target: {fileID: 207997733873464332, guid: cbee290d49137c54fbcc996ee9189861, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3037726068588213922, guid: cbee290d49137c54fbcc996ee9189861, type: 3}
       propertyPath: player
       value: 
@@ -4310,17 +4318,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 665571226}
     m_Modifications:
+    - target: {fileID: 810348970137493050, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 810348970137493050, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 810348970137493050, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1871276372}
     - target: {fileID: 3462010006611571596, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1871276373}
+    - target: {fileID: 3462010006611571596, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462010006611571596, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: followDistance
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4706706397115265174, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1871276373}
+    - target: {fileID: 4706706397115265174, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6547045395694014810, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_Name
       value: Rodger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981259332024097535, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6981259332024097535, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7019642412370848516, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4328,7 +4368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7019642412370848516, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: 7019642412370848516, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_LocalPosition.z
