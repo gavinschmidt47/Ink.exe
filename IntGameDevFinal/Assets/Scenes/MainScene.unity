@@ -1832,6 +1832,7 @@ MonoBehaviour:
   xpBar: {fileID: 796638669}
   levelPrompt: {fileID: 301433647}
   pausePanel: {fileID: 423535493}
+  hpBar: {fileID: 1076974002}
   xpFull: 0
 --- !u!1 &990436996
 GameObject:
@@ -2165,7 +2166,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.56
+  m_Value: 0.065
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

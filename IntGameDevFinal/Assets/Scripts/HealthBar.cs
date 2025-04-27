@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
     public Transform target;  // The target that the health bar will follow
     public Vector3 offset;    // Offset position from the target
-
 
     private Slider healthFill;  // The UI Image that represents the health fill
     private Camera mainCamera;
