@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class LevelUp : MonoBehaviour
 {
@@ -8,6 +13,7 @@ public class LevelUp : MonoBehaviour
     public GameObject xpBar;
     public GameObject levelPrompt;
     public GameObject pausePanel;
+    public Slider hpBar;
     
     public bool xpFull;
 
@@ -28,6 +34,8 @@ public class LevelUp : MonoBehaviour
         Time.timeScale = 1;
         paused = false;
         pausePanel.SetActive(false);
+
+        StartCoroutine(HealthTracker());
     }
 
     public void ActivateLevelPrompt()
@@ -130,5 +138,20 @@ public class LevelUp : MonoBehaviour
         {
             LevelOpen(new InputAction.CallbackContext()); // Call the LevelOpen method with a new context
         }
+    }
+
+    IEnumerator HealthTracker()
+    {
+        while(hpBar.value > 0)
+        {
+            yield return new WaitUntil(() => hpBar.value <= 0);
+        }
+
+        DeathScreen();
+    }
+
+    public void DeathScreen()
+    {
+        SceneManager.LoadScene(2);
     }
 }
