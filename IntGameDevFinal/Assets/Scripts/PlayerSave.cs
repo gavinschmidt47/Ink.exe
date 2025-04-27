@@ -20,7 +20,7 @@ public class PlayerSave : ScriptableObject
     public bool canLevelUp;
     public int weapon;
 
-    public void Reset(int weapon)
+    public void Reset()
     {
         health = 10;
         xp = 0;
@@ -30,6 +30,6 @@ public class PlayerSave : ScriptableObject
         maxHealth = 10;
         damage = 1;
         speed = 200;
-        this.weapon = (int)weapon;
+        this.weapon = 0;
     }
 }

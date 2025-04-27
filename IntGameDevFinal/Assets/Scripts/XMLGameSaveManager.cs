@@ -199,6 +199,8 @@ public class XMLGameSaveManager : MonoBehaviour
             };
         }
 
+        saveData.playerSave = new PlayerSave();
+        saveData.playerSave.Reset();
         SaveGame();
     }
 
