@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Reflection;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,8 +18,9 @@ public class EnemyController : MonoBehaviour
 
     //Enemy Components
     [Header("Enemy Components")]
-    public GameObject healthBarObject;
+    public GameObject healthObject;
 
+    private ProjectilePool projectilePool;
     private HealthBar healthBar;
     private NavMeshAgent agent;
 
@@ -38,22 +37,44 @@ public class EnemyController : MonoBehaviour
 
     private float maxHealth { get; set; }
     private float health { get; set; }
-    private float damage { get; set; }
+    internal float damage { get; set; }
     private bool isCone { get; set; }
     private bool firing;
 
 
-    void Start()
+    void OnEnable()
     {
-        //Gets the HealthBar component
-        healthBar = healthBarObject.GetComponent<HealthBar>();
+        healthBar = healthObject.GetComponent<HealthBar>();
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar component not found on healthBarObject.");
+        }
 
         //Gets the Navmesh Agent component
         agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent component not found on this GameObject.");
+        }
 
         //Sets the player to the player object
         player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player object not found in the scene.");
+        }
         playerController = player.GetComponent<PlayerController>();
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController component not found on player object.");
+        }
+
+        //Sets the projectile pool to the projectile pool object
+        projectilePool = GameObject.Find("Projectile").GetComponent<ProjectilePool>();
+        if (projectilePool == null)
+        {
+            Debug.LogError("ProjectilePool not found in the scene.");
+        }
     }
 
     void Update()
@@ -77,7 +98,6 @@ public class EnemyController : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
         }
-        
     }
 
     void OnTriggerEnter(Collider collider)
@@ -103,7 +123,7 @@ public class EnemyController : MonoBehaviour
             case 0:
                 maxHealth = 2; 
                 damage = 1;
-                isCone = false;
+                isCone = true;
                 power.SetActive(true);
                 break;
 
@@ -112,7 +132,8 @@ public class EnemyController : MonoBehaviour
                 maxHealth = 10;
                 damage = 5;
                 isCone = true;
-                //spriteRenderer.sprite = cone;
+                cone.SetActive(true);
+                Debug.Log("Cone spawn");
                 break;
 
             //PC
@@ -120,18 +141,19 @@ public class EnemyController : MonoBehaviour
                 maxHealth = 50;
                 damage = 3;
                 isCone = false;
-                //spriteRenderer.sprite = PC;
+                PC.SetActive(true);
                 break;
 
             //default (Bug)
             default:
-                throw new System.ArgumentException("Random value not in range");
+                Debug.Log("Random value not in range");
+                break;
         }
         //Sets health to maxHealth
         health = maxHealth;
 
         //Sets the health bar to the max health
-        //healthBar.SetHealth(health, maxHealth);
+        healthBar.SetHealth(health, maxHealth);
     }
 
     public void Damage(float damage)
@@ -171,7 +193,7 @@ public class EnemyController : MonoBehaviour
         firing = true;
 
         //Rotate the enemy to face the player
-        Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position) * Quaternion.Euler(90, 0, 0);
         float elapsedTime = 0f;
         while (elapsedTime < rotationTime)
         {
@@ -181,11 +203,11 @@ public class EnemyController : MonoBehaviour
         }
         transform.rotation = targetRotation;
 
-        Instantiate(mousePointer, transform.position, Quaternion.identity);
+        projectilePool.GetProjectile(transform.position);
 
         //Wait for the attack time
         yield return new WaitForSeconds(attackTime);
-        Quaternion targetRotation2 = Quaternion.Euler(0, 0, 0);
+        Quaternion targetRotation2 = Quaternion.LookRotation(player.transform.position - transform.position).normalized;
         elapsedTime = 0f;
         while (elapsedTime < rotationTime)
         {
@@ -197,10 +219,9 @@ public class EnemyController : MonoBehaviour
 
         //Set firing to false
         firing = false;
-    }
 
-    public float GetDamage()
-    {
-        return damage;
+        //Reset the path of the agent
+        agent.SetDestination(player.transform.position);
+        yield break;
     }
 }
