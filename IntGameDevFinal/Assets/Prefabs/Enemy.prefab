@@ -304,7 +304,7 @@ MonoBehaviour:
   cone: {fileID: 8286654124476196057}
   PC: {fileID: 0}
   mousePointer: {fileID: 2066226795906207635, guid: 4f3153cb06e8d664097fe4ff6d44b664, type: 3}
-  healthBarObject: {fileID: 1006870375191361326}
+  healthObject: {fileID: 1006870375191361326}
   moveDistance: 25
   attackTime: 1
   rotationTime: 1

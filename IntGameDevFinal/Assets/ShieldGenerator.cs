@@ -53,7 +53,7 @@ public class ShieldGenerator : MonoBehaviour
                 Vector3 direction = enemy.transform.position - shield.transform.position;
                 Vector3 newPosition = direction.normalized * radius + shield.transform.position;
                 enemy.transform.position = newPosition;
-                remainingCharge -= enemy.GetComponent<EnemyController>().GetDamage() * Time.deltaTime;
+                remainingCharge -= enemy.GetComponent<EnemyController>().damage * Time.deltaTime;
             }
         }
     }
