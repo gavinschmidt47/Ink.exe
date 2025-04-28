@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     public float lastFaceDir;
 
-    public bool correctWeapon;
+    public bool correctWeapon = true; 
     
 
     //Player Children
