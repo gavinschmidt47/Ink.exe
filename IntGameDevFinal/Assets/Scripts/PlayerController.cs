@@ -2,18 +2,21 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 //Stores weapons as ints, set to their levels needed
-public enum Weapon
-{
-    Paintbrush = 1,
-    Pencil = 5,
-    Pen = 20,
-    PaintBucket = 50
-}
+    public enum Weapon
+    {
+        Paintbrush = 1,
+        Pencil = 5,
+        Pen = 20,
+        PaintBucket = 50
+    }
 
 public class PlayerController : MonoBehaviour
 {
+
+    public LevelSelect LevelSelect;
     public static PlayerController Instance;
 
     //UI
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Amount of time collider stays searching")]
     public float attackTime;
 
-    private float lastFaceDir;
+    public float lastFaceDir;
     
 
     //Player Children
@@ -98,10 +101,15 @@ public class PlayerController : MonoBehaviour
         xpBar.maxValue = playerSave.xpToLevel;
         xpBar.value = playerSave.xp;
 
-        //StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
+        StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
         //StartCoroutine(WeaponAttackLoop(leftPenAtt, rightPenAtt));
-        StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
+        //StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
     }
+
+    /*public void WeaponSwitch()
+    {
+        if()
+    }*/
 
     // Update is called once per frame
     void FixedUpdate()
@@ -145,14 +153,17 @@ public class PlayerController : MonoBehaviour
         //Checks for which active weapon
         switch ((int) playerSave.weapon)
         {
-            case (int) Weapon.Paintbrush:
-                AttackPaintBrush();
-                break;
             case (int) Weapon.Pencil:
                 AttackPencil();
+                StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
                 break;
             case (int) Weapon.Pen:
                 AttackPen();
+                StartCoroutine(WeaponAttackLoop(leftPenAtt, rightPenAtt));
+                break;
+            case (int) Weapon.Paintbrush:
+                AttackPaintBrush();
+                StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
                 break;
             case (int) Weapon.PaintBucket:
                 AttackPaintBucket();
@@ -160,8 +171,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Weapon()
+    {
+        switch ((int) playerSave.weapon)
+        {
+            case (int) PlayerController.Weapon.Pencil:
+                StartCoroutine(playerController.WeaponAttackLoop(playerController.leftPencilAtt, playerController.rightPencilAtt));
+                break;
+            case (int) PlayerController.Weapon.Pen:
+                StartCoroutine(playerController.WeaponAttackLoop(playerController.leftPenAtt, playerController.rightPenAtt));
+                break;
+            case (int) PlayerController.Weapon.Paintbrush:
+                StartCoroutine(playerController.WeaponAttackLoop(playerController.leftPaintBAtt, playerController.topPaintBAtt, playerController.rightPaintBAtt, playerController.bottomPaintBAtt));
+                break;
+        }
+    }
+
     private void AttackPaintBrush()
     {
+        leftPencilAtt.SetActive(false);
+        rightPencilAtt.SetActive(false);
+        leftPenAtt.SetActive(false);
+        rightPenAtt.SetActive(false);
         //Attack with paintbrush
         if (lastFaceDir > 0)
         {
@@ -177,6 +208,12 @@ public class PlayerController : MonoBehaviour
 
     private void AttackPencil()
     {
+        leftPaintBAtt.SetActive(false);
+        topPaintBAtt.SetActive(false);
+        rightPaintBAtt.SetActive(false);
+        bottomPaintBAtt.SetActive(false);
+        leftPenAtt.SetActive(false);
+        rightPenAtt.SetActive(false);
         //Attack with pencil
         if (lastFaceDir > 0)
         {
@@ -190,7 +227,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2)
+    public IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2)
     {
         weaponHitbox1.SetActive(true);
         StartCoroutine(AttackTimer(weaponHitbox1));
@@ -202,7 +239,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(WeaponAttackLoop(weaponHitbox1, weaponHitbox2));
     }
 
-    private IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)
+    public IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)
     {
         weaponHitbox1.SetActive(true);
         StartCoroutine(AttackTimer(weaponHitbox1));
@@ -223,6 +260,12 @@ public class PlayerController : MonoBehaviour
 
     private void AttackPen()
     {
+        leftPaintBAtt.SetActive(false);
+        topPaintBAtt.SetActive(false);
+        rightPaintBAtt.SetActive(false);
+        bottomPaintBAtt.SetActive(false);
+        leftPencilAtt.SetActive(false);
+        rightPencilAtt.SetActive(false);
         //Attack with pen
         if (lastFaceDir > 0)
         {

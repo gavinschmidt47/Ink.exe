@@ -32,4 +32,10 @@ public class HealthBar : MonoBehaviour
     {
         healthFill.value = currentHealth / maxHealth;
     }
+
+
+    public void Health()
+    {
+        
+    }
 }
