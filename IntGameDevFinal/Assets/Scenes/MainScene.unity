@@ -1846,6 +1846,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 665571226}
     m_Modifications:
     - target: {fileID: -2936565922385290395, guid: 24b243fcf16b65b4b887294d49e3a11a, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 657378666}
+    - target: {fileID: -2936565922385290395, guid: 24b243fcf16b65b4b887294d49e3a11a, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1871276373}
@@ -3804,7 +3808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 207997733873464332, guid: cbee290d49137c54fbcc996ee9189861, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3037726068588213922, guid: cbee290d49137c54fbcc996ee9189861, type: 3}
       propertyPath: player
@@ -4439,7 +4443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6547045395694014810, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6981259332024097535, guid: 7e5cc684a1e8f674e8b278aeb927c1aa, type: 3}
       propertyPath: m_IsTrigger
