@@ -14,9 +14,6 @@ public class EnemyPool : MonoBehaviour
     [Tooltip("Offset of the enemy")]
     public Vector3 offset = new Vector3(0, 0, 5f);
 
-    [Header("Game Objects")]
-    public GameObject playerController;
-
     private Queue<GameObject> enemyPool;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
