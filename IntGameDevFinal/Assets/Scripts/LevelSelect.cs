@@ -2,30 +2,34 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[CreateAssetMenu]
+
 public class LevelSelect : MonoBehaviour
 {
-    /*private WeaponUnlockData weaponUnlockData;
-    public string Name;
-    public Sprite icon;*/
-
-    public PlayerController playerController;
     public PlayerSave playerSave;
+    public GameObject Earl;
+    public GameObject Gandldore;
+    public GameObject Rodger;
+    public GameObject NextCharacter;
 
-    public void Weapon()
+    public void Companion()
     {
-        switch ((int) playerSave.weapon)
+        switch(playerSave.currentCompanion)
         {
-            case (int) PlayerController.Weapon.Pencil:
-                StartCoroutine(playerController.WeaponAttackLoop(playerController.leftPencilAtt, playerController.rightPencilAtt));
-                break;
-            case (int) PlayerController.Weapon.Pen:
-                StartCoroutine(playerController.WeaponAttackLoop(playerController.leftPenAtt, playerController.rightPenAtt));
-                break;
-            case (int) PlayerController.Weapon.Paintbrush:
-                StartCoroutine(playerController.WeaponAttackLoop(playerController.leftPaintBAtt, playerController.topPaintBAtt, playerController.rightPaintBAtt, playerController.bottomPaintBAtt));
-                break;
+            case 0:
+                Earl.SetActive(true);
+                return;
+            case 1:
+                Gandldore.SetActive(true);
+                return;
+            case 2:
+                Rodger.SetActive(true);
+                NextCharacter.SetActive(false);
+                return;
+            default:
+                Debug.Log("Out of Range");
+                return;
         }
+        playerSave.currentCompanion++;
     }
 }
  

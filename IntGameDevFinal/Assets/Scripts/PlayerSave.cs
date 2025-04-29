@@ -12,6 +12,7 @@ public class PlayerSave : ScriptableObject
     public float speed;
     public float xp;
     public float level;
+    public int currentCompanion;
     
 
     //BTS Variables
