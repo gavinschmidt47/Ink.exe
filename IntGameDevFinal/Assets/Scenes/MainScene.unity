@@ -4999,6 +4999,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8944229880547719434, guid: 1c1e32b40c46c1e499527b7d45d3070e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9205939702950647597, guid: 1c1e32b40c46c1e499527b7d45d3070e, type: 3}
       propertyPath: m_UIInputModule
       value: 

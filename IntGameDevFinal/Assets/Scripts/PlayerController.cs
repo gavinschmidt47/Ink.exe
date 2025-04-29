@@ -210,50 +210,54 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator WeaponAttackLoop()
-{
-    while (true)
+    IEnumerator WeaponAttackLoop()
     {
-        switch ((int)playerSave.weapon)
-        {   
-            case (int)Weapon.Paintbrush:
-                leftPaintBAtt.SetActive(true);
-                StartCoroutine(AttackTimer(leftPaintBAtt));
-                yield return new WaitForSeconds(attackTime / 2);
-                topPaintBAtt.SetActive(true);
-                StartCoroutine(AttackTimer(topPaintBAtt));
-                yield return new WaitForSeconds(attackTime / 2);
-                rightPaintBAtt.SetActive(true);
-                StartCoroutine(AttackTimer(rightPaintBAtt));
-                yield return new WaitForSeconds(attackTime / 2);
-                bottomPaintBAtt.SetActive(true);
-                StartCoroutine(AttackTimer(bottomPaintBAtt));
-                yield return new WaitForSeconds(attackTime / 2);
-                break;
-            case (int)Weapon.Pen:
-                leftPenAtt.SetActive(true);
-                StartCoroutine(AttackTimer(leftPenAtt));
-                yield return new WaitForSeconds(attackTime);
-                rightPenAtt.SetActive(true);
-                StartCoroutine(AttackTimer(rightPenAtt));
-                yield return new WaitForSeconds(attackTime);
-                break;
-            case (int)Weapon.Pencil:
-                leftPencilAtt.SetActive(true);
-                StartCoroutine(AttackTimer(leftPencilAtt));
-                yield return new WaitForSeconds(attackTime);
-                rightPencilAtt.SetActive(true);
-                StartCoroutine(AttackTimer(rightPencilAtt));
-                yield return new WaitForSeconds(attackTime);
-                break;
-            default:
-                Debug.Log("No weapon selected");
-                break;
+        while (true)
+        {
+            switch ((int)playerSave.weapon)
+            {
+                case (int)Weapon.Pencil:
+                    rightPencilAtt.SetActive(false);
+                    leftPencilAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(leftPencilAtt));
+                    yield return new WaitForSeconds(attackTime);
+                    leftPencilAtt.SetActive(false);
+                    rightPencilAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(rightPencilAtt));
+                    yield return new WaitForSeconds(attackTime);
+                    break;
+                case (int)Weapon.Pen:
+                    rightPenAtt.SetActive(false);
+                    leftPenAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(leftPenAtt));
+                    yield return new WaitForSeconds(attackTime);
+                    leftPenAtt.SetActive(false);
+                    rightPenAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(rightPenAtt));
+                    yield return new WaitForSeconds(attackTime);
+                    break;
+                case (int)Weapon.Paintbrush:
+                    leftPaintBAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(leftPaintBAtt));
+                    yield return new WaitForSeconds(attackTime / 2);
+                    topPaintBAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(topPaintBAtt));
+                    yield return new WaitForSeconds(attackTime / 2);
+                    rightPaintBAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(rightPaintBAtt));
+                    yield return new WaitForSeconds(attackTime / 2);
+                    bottomPaintBAtt.SetActive(true);
+                    StartCoroutine(AttackTimer(bottomPaintBAtt));
+                    yield return new WaitForSeconds(attackTime / 2);
+                    break;
+                default:
+                    Debug.Log("No weapon selected");
+                    break;
+            
+            }
+            yield return new WaitForSeconds(attackTime);  // Delay between attacks
         }
-
-        yield return new WaitForSeconds(attackTime);  // Delay between attacks
     }
-}
 
     public IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)
     {
