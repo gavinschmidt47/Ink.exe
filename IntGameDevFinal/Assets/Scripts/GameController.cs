@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class GameController : MonoBehaviour
 {
@@ -94,17 +95,17 @@ public class GameController : MonoBehaviour
     private int GetRandomValue()
     {
         float random = Random.Range(0, 100.1f);
-        if (random < 96.8f - (playerController.playerSave.level) * 0.99f)
-        {
-            return 0;
-        }
-        else if (random < 3.2f + (playerController.playerSave.level))
+        if (random < 3.2f + (playerController.playerSave.level))
         {
             return 1;
         }
-        else
+        else if (random < 4.1 + (playerController.playerSave.level) * 1.1f)
         {
             return 2;
+        }
+        else
+        {
+            return 0;
         }
     }
 }
