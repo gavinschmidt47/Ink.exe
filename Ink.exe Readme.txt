@@ -1,0 +1,11 @@
+﻿* The theme for Ink.exe is the clash between physically drawn characters like stick figures against digital entities and functions. Taking heavy inspiration from Windows XP software with icons, menus, windows, and even companions. One of our unique features is how you do not get new weapons, and instead upgrade the effectiveness of what you have to increase its radius and area of effect. Another are the unlockable companions, where you can equip one every time you play which help you during gameplay each in their own ways.
+* The game takes place on one plane with randomly generated environmental hazards and help like puddles of paint that can either slow you down or speed you up. 
+* In Ink.exe you unlock different companions that each help you in their own way with passive buffs and even deal damage as well. There is only a singular playable character, but there are small “companion” characters that you unlock through gameplay that assist you while you play.
+* Ink.exe works based off of a weapon upgrade system. A few of these include the paintbrush, pen, and paint bucket. Each of these not only have different damage but different areas of effect. 
+* Ink.exe has 3 unique enemies. The Power Button is the basic enemy with low health and is the most common. Virus Launching Cone enemy has a small wind up before it fires a projectile at the player. And the Homivirus is faster than the Power Button, and has much more health.
+* Our game has a fully functional UI that is themed around the windows and applications of Windows XP. Everything from the companion select screen to the upgrade screen are themed and work flawlessly.
+* You only play on one level, but as time progresses more enemies and much stronger enemies will begin to spawn in to try and defeat the player. 
+* You are able to freely save and quit whenever you want, and the game keeps your unlocks and progress.
+* Enemies and projectiles are efficiently removed from the game when defeated or far enough away to prevent any kind of slowdown. 
+* All 3 of the enemies have their own unique animations when approaching the player.
+* The game has both matching sound effects and background music while playing.
