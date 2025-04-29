@@ -6,10 +6,13 @@ using System.Collections.Generic;
 public class LevelSelect : MonoBehaviour
 {
     public PlayerSave playerSave;
+
     public GameObject Earl;
     public GameObject Gandldore;
     public GameObject Rodger;
     public GameObject NextCharacter;
+
+
 
     public void Companion()
     {
@@ -30,6 +33,12 @@ public class LevelSelect : MonoBehaviour
                 return;
         }
         playerSave.currentCompanion++;
+    }
+
+    public void HealthUpgrade()
+    {
+        playerSave.maxHealth += 5;
+        playerSave.health = playerSave.maxHealth;
     }
 }
  

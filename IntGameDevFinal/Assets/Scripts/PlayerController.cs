@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         xpBar.maxValue = playerSave.xpToLevel;
         xpBar.value = playerSave.xp;
 
-        StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
+        StartCoroutine(WeaponAttackLoop());
         //StartCoroutine(WeaponAttackLoop(leftPenAtt, rightPenAtt));
         //StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
     }
@@ -178,21 +178,6 @@ public class PlayerController : MonoBehaviour
         {
             playerSave.weapon = (int) Weapon.Paintbrush;
         }
-        switch ((int) playerSave.weapon)
-        {
-            case (int) Weapon.Pencil:
-                correctWeapon = false;
-                StartCoroutine(WeaponAttackLoop(leftPencilAtt, rightPencilAtt));
-                break;
-            case (int) Weapon.Pen:
-                correctWeapon = false;
-                StartCoroutine(WeaponAttackLoop(leftPenAtt, rightPenAtt));
-                break;
-            case (int) Weapon.Paintbrush:
-                correctWeapon = false;
-                StartCoroutine(WeaponAttackLoop(leftPaintBAtt, topPaintBAtt, rightPaintBAtt, bottomPaintBAtt));
-                break;
-        }
     }
 
     private void AttackPaintBrush()
@@ -225,21 +210,47 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2)
+    public IEnumerator WeaponAttackLoop()
     {
-        if(!correctWeapon)
-        {
-            correctWeapon = true;
-            yield break;
+        switch ((int) playerSave.weapon)
+        {   
+            case (int) Weapon.Paintbrush:
+                leftPaintBAtt.SetActive(true);
+                StartCoroutine(AttackTimer(leftPaintBAtt));
+                yield return new WaitForSeconds(attackTime / 2);
+                topPaintBAtt.SetActive(true);
+                StartCoroutine(AttackTimer(topPaintBAtt));
+                yield return new WaitForSeconds(attackTime / 2);
+                rightPaintBAtt.SetActive(true);
+                StartCoroutine(AttackTimer(rightPaintBAtt));
+                yield return new WaitForSeconds(attackTime / 2);
+                bottomPaintBAtt.SetActive(true);
+                StartCoroutine(AttackTimer(bottomPaintBAtt));
+                yield return new WaitForSeconds(attackTime / 2);
+                break;
+            case (int) Weapon.Pen:
+                leftPenAtt.SetActive(true);
+                StartCoroutine(AttackTimer(leftPenAtt));
+                yield return new WaitForSeconds(attackTime);
+                rightPenAtt.SetActive(true);
+                StartCoroutine(AttackTimer(rightPenAtt));
+                yield return new WaitForSeconds(attackTime);
+                break;
+            case (int) Weapon.Pencil:
+                leftPencilAtt.SetActive(true);
+                StartCoroutine(AttackTimer(leftPencilAtt));
+                yield return new WaitForSeconds(attackTime);
+                rightPencilAtt.SetActive(true);
+                StartCoroutine(AttackTimer(rightPencilAtt));
+                yield return new WaitForSeconds(attackTime);
+                break;
+            default:
+                Debug.Log("No weapon selected");
+                break;
         }
-        weaponHitbox1.SetActive(true);
-        StartCoroutine(AttackTimer(weaponHitbox1));
-        yield return new WaitForSeconds(attackTime);
-        weaponHitbox2.SetActive(true);
-        StartCoroutine(AttackTimer(weaponHitbox2));
-        yield return new WaitForSeconds(attackTime);
+        
 
-        StartCoroutine(WeaponAttackLoop(weaponHitbox1, weaponHitbox2));
+        StartCoroutine(WeaponAttackLoop());
     }
 
     public IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)

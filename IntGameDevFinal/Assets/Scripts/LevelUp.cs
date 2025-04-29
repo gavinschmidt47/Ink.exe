@@ -54,9 +54,13 @@ public class LevelUp : MonoBehaviour
 
     public void CloseLevelUI()
     {
+        Time.timeScale = 0;
         open = false;
         IsLevelOpen = false;
         levelUp.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Pause(InputAction.CallbackContext context)
