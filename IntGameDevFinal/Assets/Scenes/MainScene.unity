@@ -2204,6 +2204,7 @@ MonoBehaviour:
   levelPrompt: {fileID: 301433647}
   pausePanel: {fileID: 423535493}
   hpBar: {fileID: 1076974002}
+  player: {fileID: 0}
   xpFull: 0
 --- !u!1 &990436996
 GameObject:
