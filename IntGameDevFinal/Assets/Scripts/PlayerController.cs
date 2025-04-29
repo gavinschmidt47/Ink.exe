@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public enum Weapon
     {
         Paintbrush = 1,
-        Pencil = 2,
-        Pen = 3,
-        PaintBucket = 4
+        Pencil = 0,
+        Pen = 2,
+        PaintBucket = 3
     }
 
     public LevelSelect LevelSelect;
