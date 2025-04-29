@@ -4,6 +4,7 @@ public class Attack : MonoBehaviour
 {
     private PlayerController playerController;
     private EnemyController enemyController;
+    public float damage;
     void Start()
     {
         //Get Controller to change xp
@@ -16,7 +17,7 @@ public class Attack : MonoBehaviour
         {
             enemyController = other.GetComponent<EnemyController>();
 
-            enemyController.Damage(playerController.playerSave.damage);
+            enemyController.Damage(playerController.playerSave.damage * damage);
 
             //this.gameObject.SetActive(false);
         }

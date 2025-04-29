@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
     //Stores weapons as ints, set to their levels needed
     public enum Weapon
     {
-        Paintbrush = 1,
         Pencil = 0,
-        Pen = 2,
+        Pen = 1,
+        Paintbrush = 2,
         PaintBucket = 3
     }
 
@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
                     break;
             
             }
-            yield return new WaitForSeconds(attackTime);  // Delay between attacks
+            yield return null;// new WaitForSeconds(attackTime);  // Delay between attacks
         }
     }
 
@@ -327,8 +327,8 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
 
             //UI
-            //levelUpPrompt.SetActive(false);
-            //levelUpScreen.SetActive(true);
+            levelUpPrompt.SetActive(false);
+            levelUpScreen.SetActive(true);
 
             playerSave.canLevelUp = false;
             SavePlayerData();
@@ -364,6 +364,7 @@ public class PlayerController : MonoBehaviour
         {
             GameSaveData saveData = XMLGameSaveManager.Instance.saveData;
             playerSave = saveData.playerSave;
+            playerSave.weapon = saveData.playerSave.weapon;
             hpBar.maxValue = playerSave.maxHealth;
             hpBar.value = playerSave.health;
             Debug.Log("saved health: " + hpBar.value);

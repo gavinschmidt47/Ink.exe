@@ -148,7 +148,7 @@ public class XMLGameSaveManager : MonoBehaviour
             Debug.Log("No save file found, starting new game.");
         }
     }
-    void InitializeGameData()
+    public void InitializeGameData()
     {
         // write list of unlockable characters/weapons to save data
         if (weaponUnlockData != null && characterUnlockData != null)

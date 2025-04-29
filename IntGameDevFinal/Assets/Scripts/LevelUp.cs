@@ -14,6 +14,7 @@ public class LevelUp : MonoBehaviour
     public GameObject levelPrompt;
     public GameObject pausePanel;
     public Slider hpBar;
+    public PlayerController player;
     
     public bool xpFull;
 
@@ -61,6 +62,8 @@ public class LevelUp : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        player.SavePlayerData();
     }
 
     public void Pause(InputAction.CallbackContext context)
@@ -140,7 +143,7 @@ public class LevelUp : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && !level)
         {
-            LevelOpen(new InputAction.CallbackContext()); // Call the LevelOpen method with a new context
+            //LevelOpen(new InputAction.CallbackContext()); // Call the LevelOpen method with a new context
         }
     }
 

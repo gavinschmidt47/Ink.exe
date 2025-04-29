@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 2
 --- !u!1 &2117859888874095143
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 4
 --- !u!1 &2229937853171663394
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 4
 --- !u!1 &3058862789084740062
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 4
 --- !u!1 &4096867580835102871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 2
 --- !u!1 &8106529807679636172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 4
 --- !u!1 &8499272706265728981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &8635279853793194977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c2c78187dd9ba40959fdac56cf4825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelSelect: {fileID: 0}
   hpBar: {fileID: 0}
   xpBar: {fileID: 0}
   levelUpPrompt: {fileID: 0}
@@ -1502,6 +1510,8 @@ MonoBehaviour:
   inputs: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   playerSave: {fileID: 11400000, guid: 50575d1b8b768f144bec774bd9a8cb39, type: 2}
   attackTime: 1.2
+  lastFaceDir: 0
+  correctWeapon: 1
   leftPaintBAtt: {fileID: 2675469332883324688}
   topPaintBAtt: {fileID: 3901400235733271475}
   rightPaintBAtt: {fileID: 2117859888874095143}
@@ -1766,3 +1776,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe2be80e7babdd41860a8df6954da95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1

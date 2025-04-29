@@ -1324,7 +1324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &657378667
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,7 +1636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a4ecb6bd410a94b9c6ead042753260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSave: {fileID: 11400000, guid: 50575d1b8b768f144bec774bd9a8cb39, type: 2}
   player: {fileID: 1871276376}
   Earl: {fileID: 1860041875}
   Gandldore: {fileID: 822412025}
@@ -4960,6 +4959,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 692725071}
     m_Modifications:
+    - target: {fileID: 564825051943727328, guid: 1c1e32b40c46c1e499527b7d45d3070e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3058862789084740062, guid: 1c1e32b40c46c1e499527b7d45d3070e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5033,6 +5036,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8635279853793194977, guid: 1c1e32b40c46c1e499527b7d45d3070e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805713884268689422, guid: 1c1e32b40c46c1e499527b7d45d3070e, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
