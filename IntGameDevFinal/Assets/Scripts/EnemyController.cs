@@ -107,6 +107,8 @@ public class EnemyController : MonoBehaviour
         if (collider.gameObject.CompareTag("Player"))
         {
             //Take damage from enemy
+            Debug.Log("hp before enemy hit: " + playerController.playerSave.health);
+
             playerController.playerSave.health -= damage;
             playerController.hpBar.value = playerController.playerSave.health;
 

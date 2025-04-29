@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class LevelSelect : MonoBehaviour
 {
-    public PlayerSave playerSave;
+    private PlayerSave playerSave;
+    public PlayerController player;
 
     public GameObject Earl;
     public GameObject Gandldore;
@@ -13,7 +14,10 @@ public class LevelSelect : MonoBehaviour
     public GameObject NextCharacter;
 
 
-
+    private void Start()
+    {
+        playerSave = player.playerSave;
+    }
     public void Companion()
     {
         switch(playerSave.currentCompanion)
@@ -39,6 +43,8 @@ public class LevelSelect : MonoBehaviour
     {
         playerSave.maxHealth += 5;
         playerSave.health = playerSave.maxHealth;
+        player.hpBar.maxValue = playerSave.maxHealth;
+        player.hpBar.value = playerSave.health;
     }
 }
  

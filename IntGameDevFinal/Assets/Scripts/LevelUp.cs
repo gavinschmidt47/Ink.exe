@@ -54,7 +54,7 @@ public class LevelUp : MonoBehaviour
 
     public void CloseLevelUI()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1f;
         open = false;
         IsLevelOpen = false;
         levelUp.SetActive(false);

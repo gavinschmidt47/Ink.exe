@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
         {
             //Take damage
             playerSave.health -= 1;
+            Debug.Log("player health: " + playerSave.health);    
             hpBar.value = playerSave.health;
 
             //If dead

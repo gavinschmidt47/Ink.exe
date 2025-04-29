@@ -1524,6 +1524,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 928140504}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: CloseLevelUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &667139110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1625,6 +1637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSave: {fileID: 11400000, guid: 50575d1b8b768f144bec774bd9a8cb39, type: 2}
+  player: {fileID: 1871276376}
   Earl: {fileID: 1860041875}
   Gandldore: {fileID: 822412025}
   Rodger: {fileID: 8598107417992234290}
@@ -2615,6 +2628,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1871276376}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: WeaponChoice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 928140504}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: CloseLevelUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3628,7 +3653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1567201697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4234,6 +4259,18 @@ MonoBehaviour:
       - m_Target: {fileID: 714753180}
         m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
         m_MethodName: HealthUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 928140504}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: CloseLevelUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
