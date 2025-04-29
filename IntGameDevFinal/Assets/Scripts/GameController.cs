@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     [Header("Game Objects")]
     public GameObject enemyPrefab;
     public GameObject player;
+    public EnemyPool enemyPool;
 
     private PlayerController playerController;
     private EnemyController currEnemy;
@@ -67,15 +68,16 @@ public class GameController : MonoBehaviour
             distanceToPlayer = Vector3.Distance(targetSpawn, player.transform.position);
         } while (distanceToPlayer < spawnShield);
 
-        currEnemy = Instantiate(enemyPrefab, targetSpawn, Quaternion.identity).GetComponent<EnemyController>();
-        try
-        {
-            currEnemy.setEnemy(enemyType);
-        }
-        catch (System.ArgumentException exception)
-        {
-            Debug.LogException(exception);
-        }
+        enemyPool.GetEnemy(targetSpawn, enemyType);
+        //currEnemy = Instantiate(enemyPrefab, targetSpawn, Quaternion.identity).GetComponent<EnemyController>();
+        //try
+        //{
+        //    currEnemy.setEnemy(enemyType);
+        //}
+        //catch (System.ArgumentException exception)
+        //{
+        //    Debug.LogException(exception);
+        //}
     }
 
     //Pause function now located in LevelUp.cs

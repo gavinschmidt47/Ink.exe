@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     //Enemy Components
     [Header("Enemy Components")]
     public GameObject healthObject;
+    public EnemyPool enemyPool;
 
     private ProjectilePool projectilePool;
     private HealthBar healthBar;
@@ -109,8 +110,8 @@ public class EnemyController : MonoBehaviour
             playerController.playerSave.health -= damage;
             playerController.hpBar.value = playerController.playerSave.health;
 
-            //Temporary, destroys enemy
-            Destroy(gameObject);
+            //Return enemy to pool
+            enemyPool.ReturnEnemy(gameObject);
         }
     }
 
@@ -183,7 +184,7 @@ public class EnemyController : MonoBehaviour
                 playerController.StartCoroutine(playerController.LevelingUI());
             }
 
-            Destroy(gameObject);
+            enemyPool.ReturnEnemy(gameObject);
         }
     }
 

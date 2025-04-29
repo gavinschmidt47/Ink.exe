@@ -13,7 +13,7 @@ public class BulletDamage2D : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
+        if (target != null && target.gameObject.activeInHierarchy)
         {
             Vector3 direction = (target.position - transform.position);
             direction.y = 0f;
