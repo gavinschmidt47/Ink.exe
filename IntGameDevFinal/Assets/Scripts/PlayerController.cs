@@ -211,10 +211,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public IEnumerator WeaponAttackLoop()
+{
+    while (true)
     {
-        switch ((int) playerSave.weapon)
+        switch ((int)playerSave.weapon)
         {   
-            case (int) Weapon.Paintbrush:
+            case (int)Weapon.Paintbrush:
                 leftPaintBAtt.SetActive(true);
                 StartCoroutine(AttackTimer(leftPaintBAtt));
                 yield return new WaitForSeconds(attackTime / 2);
@@ -228,7 +230,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(AttackTimer(bottomPaintBAtt));
                 yield return new WaitForSeconds(attackTime / 2);
                 break;
-            case (int) Weapon.Pen:
+            case (int)Weapon.Pen:
                 leftPenAtt.SetActive(true);
                 StartCoroutine(AttackTimer(leftPenAtt));
                 yield return new WaitForSeconds(attackTime);
@@ -236,7 +238,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(AttackTimer(rightPenAtt));
                 yield return new WaitForSeconds(attackTime);
                 break;
-            case (int) Weapon.Pencil:
+            case (int)Weapon.Pencil:
                 leftPencilAtt.SetActive(true);
                 StartCoroutine(AttackTimer(leftPencilAtt));
                 yield return new WaitForSeconds(attackTime);
@@ -248,10 +250,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("No weapon selected");
                 break;
         }
-        
 
-        StartCoroutine(WeaponAttackLoop());
+        yield return new WaitForSeconds(attackTime);  // Delay between attacks
     }
+}
 
     public IEnumerator WeaponAttackLoop(GameObject weaponHitbox1, GameObject weaponHitbox2, GameObject weaponHitbox3, GameObject weaponHitbox4)
     {
