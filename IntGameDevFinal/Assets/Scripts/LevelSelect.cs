@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class LevelSelect : MonoBehaviour
 {
-    private PlayerSave playerSave;
+    public PlayerSave playerSave;
     public PlayerController player;
 
     public GameObject Earl;
@@ -13,22 +13,18 @@ public class LevelSelect : MonoBehaviour
     public GameObject Rodger;
     public GameObject NextCharacter;
 
-
-    private void Start()
-    {
-        playerSave = player.playerSave;
-    }
     public void Companion()
     {
+        playerSave.currentCompanion++;
         switch(playerSave.currentCompanion)
         {
-            case 0:
+            case 1:
                 Earl.SetActive(true);
                 return;
-            case 1:
+            case 2:
                 Gandldore.SetActive(true);
                 return;
-            case 2:
+            case 3:
                 Rodger.SetActive(true);
                 NextCharacter.SetActive(false);
                 return;
@@ -36,7 +32,6 @@ public class LevelSelect : MonoBehaviour
                 Debug.Log("Out of Range");
                 return;
         }
-        playerSave.currentCompanion++;
     }
 
     public void HealthUpgrade()

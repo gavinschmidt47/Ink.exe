@@ -31,6 +31,7 @@ public class PlayerSave : ScriptableObject
         maxHealth = 10;
         damage = 1;
         speed = 200;
+        currentCompanion = 0;
         this.weapon = 0;
     }
 }

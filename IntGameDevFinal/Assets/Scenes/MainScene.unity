@@ -1636,6 +1636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a4ecb6bd410a94b9c6ead042753260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSave: {fileID: 11400000, guid: 50575d1b8b768f144bec774bd9a8cb39, type: 2}
   player: {fileID: 1871276376}
   Earl: {fileID: 1860041875}
   Gandldore: {fileID: 822412025}
