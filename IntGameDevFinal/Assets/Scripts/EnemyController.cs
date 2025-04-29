@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Objects")]
     public GameObject power;
     public GameObject cone;
-    public GameObject PC;
+    //public GameObject PC;
     [Tooltip("Projectile for cone")]
     public GameObject mousePointer;
 
@@ -141,7 +141,7 @@ public class EnemyController : MonoBehaviour
                 maxHealth = 50;
                 damage = 3;
                 isCone = false;
-                PC.SetActive(true);
+                //PC.SetActive(true);
                 break;
 
             //default (Bug)

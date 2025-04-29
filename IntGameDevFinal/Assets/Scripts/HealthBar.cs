@@ -1,21 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
     public Transform target;  // The target that the health bar will follow
     public Vector3 offset;    // Offset position from the target
 
-    private Slider healthFill;  // The UI Image that represents the health fill
+
+    private Slider healthFill;  // The UI Slider that represents the health fill
     private Camera mainCamera;
 
-    void Start()
+    void Awake()
     {
         mainCamera = Camera.main;
         healthFill = GetComponent<Slider>();
+        if (healthFill == null)
+        {
+            Debug.LogError("Slider component not found on the GameObject.");
+        }
     }
 
     void Update()
@@ -31,11 +33,5 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(float currentHealth, float maxHealth)
     {
         healthFill.value = currentHealth / maxHealth;
-    }
-
-
-    public void Health()
-    {
-        
     }
 }
